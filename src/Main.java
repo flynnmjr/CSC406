@@ -17,9 +17,12 @@ public class Main extends PApplet {
 		frameRate(60);
 		imageMode(CENTER);
 		cursor();
+		noStroke();
 		
 		//initialize the mazerunner
 		mazeRunner = new Maze(this);
+		
+		//debug
 		
 	}
 
@@ -36,12 +39,13 @@ public class Main extends PApplet {
 			//maze display
 			mazeRunner.display();
 			//if mouse is outside maze, game over
-			if(!mazeRunner.mouseCheck1())
+			if(!mazeRunner.mouseCheck())
 				state=2;
 			break;
 			
 		case 2:
 			gameOver();
+			break;
 		}
 	}
 	

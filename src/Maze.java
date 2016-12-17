@@ -13,6 +13,11 @@ public class Maze extends Main {
 	}
 
 	public void display(){
+		
+		//debug
+		if(frameCount%10==0)
+			print(p.mouseX, " ", p.mouseY, "\n");
+
 		p.noCursor();
 		p.background(0,0,0);
 		
@@ -52,24 +57,40 @@ public class Maze extends Main {
 		//maze section
 		p.fill(3,173,255);
 		p.rect(200,0,1000,100);
+	    p.rect(200, 0, 60, 600);
+	    p.fill(255,0,0);
+	    p.rect(200, 550, 60, 50);
+
 
 
 
 	}
 
 	
-	//mouse check for level 1
-	public boolean mouseCheck1(){
+	//edge check for all levels
+	public boolean mouseCheck(){
 		
 		boolean rec_edges = true;
 		
-		//maze edge detection
-		if(p.mouseX>=1200 || p.mouseX<=1000){
-			rec_edges = false;
+		switch(level){
+		case 0:
+			//maze edge detection
+			if(p.mouseX>=1200 || p.mouseX<=1000){
+				rec_edges = false;
+			}			
+			break;
+		case 1:
+			if(p.mouseY>=110 || ((p.mouseX<=200 || p.mouseX>=1200) || p.mouseY>=105)){
+				rec_edges = false;
+			}
+			if(p.mouseX<=260 && p.mouseY<=600){
+				rec_edges = true;
+			}
+
+		
 		}
 		
 		return rec_edges;
-
 
 	}
 	
@@ -77,6 +98,8 @@ public class Maze extends Main {
 		
 		//level 1 win checker
 		if(p.mouseY<=100 && level==0)
+			level += 1;
+		if((p.mouseX<=260 && p.mouseX >=200) && (p.mouseY>=550))
 			level += 1;
 			
 	}
