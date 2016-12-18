@@ -16,7 +16,6 @@ public class Main extends PApplet {
 		background(3,173,255);
 		frameRate(60);
 		imageMode(CENTER);
-		cursor();
 		noStroke();
 		
 		//initialize the mazerunner
@@ -28,6 +27,14 @@ public class Main extends PApplet {
 
 	public void draw(){
 		
+		//debug, tb remvoed
+		if(frameCount%10==0)
+			print(mouseX, " ", mouseY, "\n");
+		print(state);
+
+		
+		cursor();
+
 		//menu switcher
 		switch(state){
 		
@@ -45,6 +52,9 @@ public class Main extends PApplet {
 			
 		case 2:
 			gameOver();
+			break;
+		case 3:
+			//instructions?
 			break;
 		}
 	}
@@ -91,6 +101,21 @@ public class Main extends PApplet {
 		textSize(90);
 		fill(0,0,0);
 		text("Game Over!", 640, 90);
+		
+		//if mouse over play, change color
+		if(mouseX >= 1000 && mouseX <=1200 && mouseY>=550 && mouseY<=600)
+			fill(90,3,255);
+		textSize(70);
+		text("PLAY", 1100,600);
+		
+		//set fill back to black
+		fill(0,0,0);
+		
+		if(mouseX >= 100 && mouseX <=300 && mouseY>=550 && mouseY<=600)
+			fill(90,3,255);
+		textSize(70);
+		text("QUIT", 200,600);
+
 
 		
 	}
@@ -99,9 +124,13 @@ public class Main extends PApplet {
 	
 	public void mouseClicked(){
 		
-		//if in main menu and click play
-		if(state ==0 && mouseX >= 1000 && mouseX <=1200 && mouseY>=550 && mouseY<=600){
+		//If not in game states and click play
+		if(state !=1 && mouseX >= 1000 && mouseX <=1200 && mouseY>=550 && mouseY<=600){
 			state = 1;
+		}
+		
+		if(state==2 && (mouseX >= 120 && mouseX <= 285) && (mouseY >= 550 && mouseY <= 600)){
+			exit();
 		}
 
 	}
