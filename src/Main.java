@@ -28,9 +28,9 @@ public class Main extends PApplet {
 	public void draw(){
 		
 		//debug, tb remvoed
-		if(frameCount%10==0)
+		if(frameCount%60==0)
 			print(mouseX, " ", mouseY, "\n");
-		print(state);
+		//print("\n", state);
 
 		
 		cursor();
@@ -127,8 +127,10 @@ public class Main extends PApplet {
 		//If not in game states and click play
 		if(state !=1 && mouseX >= 1000 && mouseX <=1200 && mouseY>=550 && mouseY<=600){
 			state = 1;
+			Maze.level = 0;
 		}
 		
+		//quits game on quit button pressed
 		if(state==2 && (mouseX >= 120 && mouseX <= 285) && (mouseY >= 550 && mouseY <= 600)){
 			exit();
 		}

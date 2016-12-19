@@ -4,7 +4,7 @@ import processing.core.PApplet;
 public class Maze extends Main {
 	
 	private PApplet p;
-	int level = 0;
+    static int level = 0;
 	float x,y;
 
 	
@@ -18,8 +18,9 @@ public class Maze extends Main {
 	public void display(){
 		
 		//debug, tb remvoed
-		if(frameCount%10==0)
+		if(frameCount%60==0)
 			print(p.mouseX, " ", p.mouseY, "\n");
+			print("\n", level);
 
 		p.noCursor();
 		p.background(0,0,0);
@@ -102,17 +103,30 @@ public class Maze extends Main {
 		switch(level){
 		case 0:
 			//maze edge detection
-			if(p.mouseX>=1200 || p.mouseX<=1000){
-				rec_edges = false;
-			}			
+			if(p.mouseX>=1200 || p.mouseX<=1000)
+				rec_edges = false;	
 			break;
 		case 1:
-			if(p.mouseY>=110 || ((p.mouseX<=200 || p.mouseX>=1200) || p.mouseY>=105)){
+			if(p.mouseY>=110 || ((p.mouseX<=200 || p.mouseX>=1200) || p.mouseY>=105))
 				rec_edges = false;
-			}
-			if(p.mouseX<=260 && p.mouseY<=600){
+			if(p.mouseX<=260 && p.mouseY<=600)
 				rec_edges = true;
-			}
+			break;
+		case 2:
+			//first rect
+			if((p.mouseX<= 200 || p.mouseX >= 1035 || p.mouseY <= 545 || p.mouseY >= 595))
+				rec_edges = false;
+			//second rect
+			if((p.mouseY <= 595 || p.mouseY >= 450) && (p.mouseX >= 1000 && p.mouseX <= 1040))
+				rec_edges = true;
+			if((p.mouseY <= 595 && p.mouseY >= 430) && (p.mouseX >= 1000 && p.mouseX <= 1040))
+				rec_edges = true;
+				if(p.mouseY <= 430 || p.mouseY >= 595)
+					rec_edges= false;
+			//third rect
+				if((p.mouseX<= 200 || p.mouseX >= 1035 || p.mouseY <= 545 || p.mouseY >= 595))
+					rec_edges = true;
+			break;
 
 		
 		}
@@ -126,6 +140,7 @@ public class Maze extends Main {
 		//level 1 win checker
 		if(p.mouseY<=100 && level==0)
 			level += 1;
+		//level 2 win checker
 		if((p.mouseX<=260 && p.mouseX >=200) && (p.mouseY>=550) && level==1)
 			level += 1;
 			
