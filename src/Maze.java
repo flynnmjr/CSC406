@@ -38,7 +38,7 @@ public class Maze extends Main {
 			stage3();
 			break;
 		case 3:
-			//movie?
+			//movie
 			break;
 		}
 
@@ -71,10 +71,10 @@ public class Maze extends Main {
 		//maze section
 		p.fill(3,173,255);
 		p.rect(200,0,1000,100);
-	    p.rect(200, 0, 60, 600);
-	    //win section
-	    p.fill(255,0,0);
-	    p.rect(200, 550, 60, 50);
+		p.rect(200, 0, 60, 600);
+		//win section
+		p.fill(255,0,0);
+		p.rect(200, 550, 60, 50);
 
 
 
@@ -117,16 +117,19 @@ public class Maze extends Main {
 			if((p.mouseX<= 200 || p.mouseX >= 1035 || p.mouseY <= 545 || p.mouseY >= 595))
 				rec_edges = false;
 			//second rect
-			if((p.mouseY <= 595 || p.mouseY >= 450) && (p.mouseX >= 1000 && p.mouseX <= 1040))
+			if((p.mouseY <= 600 || p.mouseY >= 450) && (p.mouseX >= 990 && p.mouseX <= 1040))
 				rec_edges = true;
-			if((p.mouseY <= 595 && p.mouseY >= 430) && (p.mouseX >= 1000 && p.mouseX <= 1040))
-				rec_edges = true;
-				if(p.mouseY <= 430 || p.mouseY >= 595)
-					rec_edges= false;
 			//third rect
-				if((p.mouseX<= 200 || p.mouseX >= 1035 || p.mouseY <= 545 || p.mouseY >= 595))
-					rec_edges = true;
+			if((p.mouseY <= 480 && p.mouseY >= 450) && (p.mouseX >= 200 && p.mouseX <= 1040))
+				rec_edges = true;
+			//fourth rect
+			if((p.mouseY <= 450 && p.mouseY >= 250) && (p.mouseX >= 20 && p.mouseX <= 220))
+				rec_edges = true;
+			//fifth rect
+			if((p.mouseY <= 265 && p.mouseY >= 250) && (p.mouseX >= 200 && p.mouseX <= 595))
+				rec_edges = true;
 			break;
+
 
 		
 		}
@@ -142,6 +145,9 @@ public class Maze extends Main {
 			level += 1;
 		//level 2 win checker
 		if((p.mouseX<=260 && p.mouseX >=200) && (p.mouseY>=550) && level==1)
+			level += 1;
+		//level 3 win checker
+		if((p.mouseX <= 620 && p.mouseX >= 600)&& (p.mouseY>=250)&& level ==2)
 			level += 1;
 			
 	}
