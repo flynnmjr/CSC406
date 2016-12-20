@@ -4,6 +4,7 @@ public class Main extends PApplet {
 	
 	protected int state = 0;
 	private Maze mazeRunner;
+	//private Movie myMovie;
 	
 	public void settings(){
 		
@@ -56,6 +57,9 @@ public class Main extends PApplet {
 		case 3:
 			//instructions?
 			break;
+		case 4:
+			playVideo();
+		
 		}
 	}
 	
@@ -119,6 +123,17 @@ public class Main extends PApplet {
 
 		
 	}
+	
+	public void playVideo(){
+		// Gets the movie and play movie 
+		myMovie = new Movie(this, "My Movie.mp4");
+		image(myMovie, 0, 0);
+		myMovie.play();
+		
+		
+		
+		
+	}
 
 	
 	
@@ -134,6 +149,18 @@ public class Main extends PApplet {
 		if(state==2 && (mouseX >= 120 && mouseX <= 285) && (mouseY >= 550 && mouseY <= 600)){
 			exit();
 		}
+		// calls video to be played 
+		if(Maze.level == 3){
+			state = 4;
+			
+		}
+		
+	void movieEvent(Movie m) {
+		
+		//reads movie 
+  		m.read();
+	}
+
 
 	}
 	
