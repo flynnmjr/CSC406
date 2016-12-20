@@ -3,16 +3,33 @@ import processing.video.*;
 
 public class Main extends PApplet {
 	
+	/**
+	 * state is used to keep track of the state the game is currently in 
+	 * For example if you hit an edge of the maze and lose, you will go to the gameOver stage
+	 * 
+	 * mazeRunner is the actual game. It hold all the mazes that are used for the game
+	 * 
+	 * myMovie will hold the movie that will be later played when the player makes it 
+	 * all three levels 
+	 */
+	
 	protected int state = 0;
 	private Maze mazeRunner;
 	//private Movie myMovie;
+	
+	/**
+	 * settings sets the size of the screen and set up how smooth the game is.
+	 */
 	
 	public void settings(){
 		
 		size(1280,720);
 		smooth(20);
 	}
-	
+	/**
+	 * setup will setup the background color, the frame rate the image Mode, takes away 
+	 * all the edges and initialize mazeRunner
+	 */
 	public void setup(){
 		
 		background(3,173,255);
@@ -23,9 +40,13 @@ public class Main extends PApplet {
 		//initialize the mazerunner
 		mazeRunner = new Maze(this);
 		
-		//debug
 		
 	}
+	
+	/**
+	 * reads the cursor. Then switches the state of the game depending on the 
+	 * current state of the game. 
+	 */
 
 	public void draw(){
 		
@@ -56,14 +77,15 @@ public class Main extends PApplet {
 			gameOver();
 			break;
 		case 3:
-			//instructions?
-			break;
-		case 4:
 			playVideo();
-		
+			break;
 		}
 	}
-	
+	/**
+	 * This is the main menu. Sets up the main menu with all of the words on it and places
+	 * the words accordingly. Allows them to choose if they would like to play or if they would 
+	 * like help.
+	 */
 	private void mainMenu(){
 		textAlign(CENTER);
 		textSize(90);
@@ -98,6 +120,10 @@ public class Main extends PApplet {
 		
 
 	}
+	/**
+	 * gameOver sets the game over screen. It gives the user an option if they would like to play 
+	 * again or not. It also, gives them the option to quit.
+	 */
 	
 	public void gameOver(){
 		//placeholder, add play and quit buttons
@@ -125,6 +151,10 @@ public class Main extends PApplet {
 		
 	}
 	
+	/**
+	 * sets the movie as myMove and sets the image of the movie and plays it
+	 */
+	
 	public void playVideo(){
 		// Gets the movie and play movie 
 		myMovie = new Movie(this, "My Movie.mp4");
@@ -137,7 +167,11 @@ public class Main extends PApplet {
 	}
 
 	
-	
+	/**
+	 * If not in game states and click play and set state to 1 and set level to 0
+	 * quits game on quit button pressed when at state 2
+	 * calls video to be played when at level 3
+	 */
 	public void mouseClicked(){
 		
 		//If not in game states and click play
@@ -152,13 +186,14 @@ public class Main extends PApplet {
 		}
 		// calls video to be played 
 		if(Maze.level == 3){
-			state = 4;
+			state = 3;
 			
 		}
 		
+	/**
+	 * reads moview
+	 */
 	void movieEvent(Movie m) {
-		
-		//reads movie 
   		m.read();
 	}
 
@@ -166,7 +201,9 @@ public class Main extends PApplet {
 	}
 	
 	
-	//runs the papplet
+	/**
+	*runs the papplet
+	**/
 	public static void main(String[] args) {
 		PApplet.main("Main");
 	}
