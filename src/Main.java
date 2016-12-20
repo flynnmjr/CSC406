@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.video.*;
 
 public class Main extends PApplet {
 	
